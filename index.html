@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ali Amr — Data Scientist Portfolio</title>
+  <meta name="description" content="Portfolio of Ali Amr, a Data Scientist specializing in web data collection, cleaning, feature engineering, visualization, and machine learning." />
+  <style>
+    :root{
+      --orange:#ff7700;
+      --offwhite:#f8f9fa;
+      --blue:#007bff;
+      --dark-bg:#0f1115;
+      --dark-card:#151922;
+      --dark-elev:#1b2130;
+      --muted:#b5bdc9;
+      --border:#263044;
+      --radius:14px;
+      --shadow:0 10px 24px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.35);
+      --focus:0 0 0 3px rgba(0,123,255,.35);
+      --maxw:1100px;
+    }
+
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--dark-bg);color:var(--offwhite);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.55}
+    img{max-width:100%;display:block}
+    a{color:var(--blue);text-decoration:none}
+    a:focus,button:focus,input:focus,textarea:focus{outline:none;box-shadow:var(--focus);border-radius:10px}
+    h1,h2{margin:0 0 .5rem}
+    h2{font-size:1.9rem;text-align:center}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    section{padding:64px 0}
+    .muted{color:var(--muted)}
+
+    /* Header (kept bright) */
+    header.hero{
+      background:var(--orange);
+      color:var(--offwhite);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero .container{padding:36px 20px 72px}
+    .logo-wrap{
+      position:absolute; left:20px; top:16px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .logo-wrap img{max-height:80px;width:auto;}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items:center;
+      gap:28px;
+    }
+    .hero-name{
+      font-size:3rem;
+      font-weight:800;
+      letter-spacing:.3px;
+      color:var(--offwhite);
+      margin-bottom:14px;
+      line-height:1.15;
+    }
+    .hero-summary{
+      color:var(--offwhite);
+      font-size:1.05rem;
+      max-width:52ch;
+    }
+    .profile-wrap{justify-self:end;display:flex;align-items:center;justify-content:center}
+    .profile{
+      width:300px; height:300px; border-radius:50%;
+      object-fit:cover; border:4px solid #ffffff;
+      box-shadow:0 8px 24px rgba(0,0,0,.18);
+      background:#fff;
+    }
+
+    /* Section headings */
+    .section-title{margin-bottom:28px}
+
+    /* Tabs (Skills) — dark themed with progress bars (no visible % text) */
+    .tabs{
+      max-width:900px; margin:0 auto;
+      background:var(--dark-card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .tablist{
+      display:flex; flex-wrap:wrap;
+      background:var(--dark-elev);
+      border-bottom:1px solid var(--border);
+    }
+    .tab{
+      appearance:none; border:0; background:transparent; cursor:pointer;
+      padding:14px 18px; font-weight:700; color:var(--offwhite); flex:1 1 0;
+      letter-spacing:.2px;
+      transition:background .2s ease, color .2s ease, transform .05s ease-in;
+    }
+    .tab[aria-selected="true"]{background:var(--blue);color:#fff}
+    .tab:hover{background:#1f2840}
+    .tabpanel{padding:22px 22px 26px}
+    .skill{margin-bottom:18px}
+    .skill-title{font-weight:700;margin-bottom:8px}
+    .progress{
+      background:#0b0f18;
+      border:1px solid var(--border);
+      border-radius:999px;
+      overflow:hidden;
+      height:14px;
+      position:relative;
+    }
+    .progress-fill{
+      position:absolute; left:0; top:0; bottom:0;
+      width:0%;
+      background:linear-gradient(90deg,var(--blue),#3aa0ff);
+      transition:width 900ms ease;
+    }
+    /* subtle stripes */
+    .progress-fill::after{
+      content:"";
+      position:absolute; inset:0;
+      background-image:linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.18) 50%, rgba(255,255,255,.18) 75%, transparent 75%, transparent);
+      background-size:24px 24px;
+      mix-blend-mode:overlay;
+      opacity:.25;
+      animation:move 2s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes move{to{background-position:24px 0}}
+
+    /* Visually hidden (for a11y, to expose % to screen readers only) */
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
+    /* Projects */
+    .projects-grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .card{
+      background:var(--dark-card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      display:flex; flex-direction:column; overflow:hidden;
+      transition: transform .15s ease;
+    }
+    .card:hover{transform: translateY(-2px)}
+    .card img{
+      width:100%; height:160px; object-fit:cover; background:#222;
+    }
+    .card-body{padding:16px 16px 18px; display:flex; flex-direction:column; gap:8px}
+    .card-title{font-weight:800; font-size:1.1rem}
+    .card-desc{color:var(--muted); font-size:.98rem}
+    .btn{
+      align-self:flex-start;
+      display:inline-block;
+      background:var(--blue);
+      color:#fff; font-weight:800;
+      padding:10px 14px; border-radius:10px; border:0;
+      text-decoration:none; transition:filter .15s ease, transform .05s ease-in;
+    }
+    .btn:hover{filter:brightness(.95)}
+    .btn:active{transform:translateY(1px)}
+
+    /* Contact */
+    .contact-wrap{
+      max-width:800px; margin:0 auto;
+      background:var(--dark-card); border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+    .email-line{font-weight:700; margin-bottom:12px; word-break:break-all}
+    form{display:grid; gap:14px}
+    label{font-weight:700}
+    input[type="text"], input[type="email"], textarea{
+      width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-size:1rem;
+      background:var(--dark-elev); color:var(--offwhite);
+    }
+    textarea{min-height:140px; resize:vertical}
+    input[type="submit"]{
+      background:var(--blue); color:#fff; font-weight:900; border:0;
+      padding:12px 18px; border-radius:12px; cursor:pointer;
+      transition:filter .15s ease, transform .05s ease-in;
+    }
+    input[type="submit"]:hover{filter:brightness(.95)}
+    input[type="submit"]:active{transform:translateY(1px)}
+
+    /* Footer */
+    footer{
+      padding:28px 0 48px; text-align:center; color:var(--muted); font-size:.95rem;
+      border-top:1px solid var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px){
+      .hero-grid{grid-template-columns:1fr; text-align:left}
+      .profile-wrap{justify-self:start}
+      .logo-wrap{top:12px; right:14px}
+      .projects-grid{grid-template-columns: repeat(2,1fr)}
+    }
+    @media (max-width: 640px){
+      .hero-name{font-size:2.25rem}
+      .hero-summary{font-size:1rem}
+      .projects-grid{grid-template-columns:1fr}
+      .card img{height:150px}
+      .tab{flex: 1 0 50%}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header (orange) -->
+  <header class="hero" role="banner">
+    <div class="logo-wrap" aria-hidden="true">
+      <img src="logo.png" alt="Your Logo" />
+    </div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <h1 class="hero-name">Ali Amr</h1>
+          <p class="hero-summary">
+            I'm a Data Scientist specialized in collecting data from websites, cleaning and optimizing data to extract important features and visualize it for better reading and storytelling. I build machine learning models to make predictions about selected features. I adapt to new updates as they happen and apply new methods to ensure flexibility and stability. I also like to hear feedback to improve and deliver better results.
+          </p>
+        </div>
+        <div class="profile-wrap">
+          <img class="profile" src="my_pfp.jpg" alt="Your Profile Picture" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Skills -->
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 class="section-title" id="skills-title">Skills</h2>
+        <div class="tabs" data-component="tabs">
+          <div class="tablist" role="tablist" aria-label="Skills Tabs">
+            <button class="tab" role="tab" id="tab-python" aria-controls="panel-python" aria-selected="true">Python</button>
+            <button class="tab" role="tab" id="tab-web" aria-controls="panel-web" aria-selected="false">Web Scraping</button>
+            <button class="tab" role="tab" id="tab-ds" aria-controls="panel-ds" aria-selected="false">Data Science</button>
+          </div>
+
+          <!-- Python -->
+          <div class="tabpanel" id="panel-python" role="tabpanel" aria-labelledby="tab-python">
+            <div class="skill" role="group" aria-labelledby="skill-pandas">
+              <div class="skill-title" id="skill-pandas">Pandas</div>
+              <div class="progress" role="progressbar" aria-label="Pandas proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" data-level="90">
+                <span class="progress-fill"></span><span class="sr-only">90%</span>
+              </div>
+            </div>
+
+            <div class="skill" role="group" aria-labelledby="skill-numpy">
+              <div class="skill-title" id="skill-numpy">NumPy</div>
+              <div class="progress" role="progressbar" aria-label="NumPy proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" data-level="80">
+                <span class="progress-fill"></span><span class="sr-only">80%</span>
+              </div>
+            </div>
+
+            <div class="skill" role="group" aria-labelledby="skill-matplotlib">
+              <div class="skill-title" id="skill-matplotlib">Matplotlib</div>
+              <div class="progress" role="progressbar" aria-label="Matplotlib proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" data-level="80">
+                <span class="progress-fill"></span><span class="sr-only">80%</span>
+              </div>
+            </div>
+
+            <div class="skill" role="group" aria-labelledby="skill-seaborn">
+              <div class="skill-title" id="skill-seaborn">Seaborn</div>
+              <div class="progress" role="progressbar" aria-label="Seaborn proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" data-level="70">
+                <span class="progress-fill"></span><span class="sr-only">70%</span>
+              </div>
+            </div>
+
+            <div class="skill" role="group" aria-labelledby="skill-plotly">
+              <div class="skill-title" id="skill-plotly">Plotly</div>
+              <div class="progress" role="progressbar" aria-label="Plotly proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" data-level="90">
+                <span class="progress-fill"></span><span class="sr-only">90%</span>
+              </div>
+            </div>
+
+            <div class="skill" role="group" aria-labelledby="skill-dash">
+              <div class="skill-title" id="skill-dash">Dash</div>
+              <div class="progress" role="progressbar" aria-label="Dash proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" data-level="80">
+                <span class="progress-fill"></span><span class="sr-only">80%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Web Scraping -->
+          <div class="tabpanel" id="panel-web" role="tabpanel" aria-labelledby="tab-web" hidden>
+            <div class="skill" role="group" aria-labelledby="skill-selenium">
+              <div class="skill-title" id="skill-selenium">Selenium</div>
+              <div class="progress" role="progressbar" aria-label="Selenium proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" data-level="90">
+                <span class="progress-fill"></span><span class="sr-only">90%</span>
+              </div>
+            </div>
+
+            <div class="skill" role="group" aria-labelledby="skill-request">
+              <div class="skill-title" id="skill-request">Request</div>
+              <div class="progress" role="progressbar" aria-label="Request proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" data-level="50">
+                <span class="progress-fill"></span><span class="sr-only">50%</span>
+              </div>
+            </div>
+
+            <div class="skill" role="group" aria-labelledby="skill-bs4">
+              <div class="skill-title" id="skill-bs4">Beautiful Soup</div>
+              <div class="progress" role="progressbar" aria-label="Beautiful Soup proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" data-level="70">
+                <span class="progress-fill"></span><span class="sr-only">70%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Science -->
+          <div class="tabpanel" id="panel-ds" role="tabpanel" aria-labelledby="tab-ds" hidden>
+            <div class="skill" role="group" aria-labelledby="skill-prep">
+              <div class="skill-title" id="skill-prep">Preprocessing</div>
+              <div class="progress" role="progressbar" aria-label="Preprocessing proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" data-level="90">
+                <span class="progress-fill"></span><span class="sr-only">90%</span>
+              </div>
+            </div>
+
+            <div class="skill" role="group" aria-labelledby="skill-viz">
+              <div class="skill-title" id="skill-viz">Visualization</div>
+              <div class="progress" role="progressbar" aria-label="Visualization proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" data-level="90">
+                <span class="progress-fill"></span><span class="sr-only">90%</span>
+              </div>
+            </div>
+
+            <div class="skill" role="group" aria-labelledby="skill-ml">
+              <div class="skill-title" id="skill-ml">Machine Learning</div>
+              <div class="progress" role="progressbar" aria-label="Machine Learning proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" data-level="50">
+                <span class="progress-fill"></span><span class="sr-only">50%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <h2 class="section-title" id="projects-title">Projects</h2>
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="card">
+            <img src="fpl.gif" alt="Project Image placeholder for Fantasy Premier League Predictor" />
+            <div class="card-body">
+              <div class="card-title">Fantasy Premier League Predictor</div>
+              <p class="card-desc">
+                An interactive app to quickly find top performing players based on stats of past seasons. It's built on a simple layout for easier navigation and finding different stats is as easy as clicking buttons!
+              </p>
+              <a class="btn" href="https://github.com/AliNowia/Fpl-performance-predictor" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="card">
+            <img src="usaccidents.gif" alt="Project Image placeholder for United States Accidents Dashboard" />
+            <div class="card-body">
+              <div class="card-title">United States Accidents Dashboard</div>
+              <p class="card-desc">
+                A dashboard for practicing preprocessing and visualization, showing multiple graphs for many aspects of the accidents, including where they occurred, when and on what conditions.
+              </p>
+              <a class="btn" href="https://github.com/AliNowia/US-Accidents-Dashboard" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="card">
+            <img src="audible.png" alt="Project Image placeholder for Audible, An audio book website" />
+            <div class="card-body">
+              <div class="card-title">Audible, An audio book website</div>
+              <p class="card-desc">
+                Web scraping project where I collected data about audio books and organized them in an easy-to-read excel file. It was a data entry practice.
+              </p>
+              <a class="btn" href="https://github.com/AliNowia/Audible-search" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 class="section-title" id="contact-title">Contact</h2>
+        <div class="contact-wrap">
+          <div class="email-line">Email: <a href="mailto:aliamr182005@gmail.com">aliamr182005@gmail.com</a></div>
+          <form action="#" method="post" novalidate aria-label="Contact form">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="How can I help?" required></textarea>
+            </div>
+            <div>
+              <input type="submit" value="Send Message" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Ali Amr Portfolio
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Tabs with accessibility + progress re-animate
+    (function(){
+      const tabs = Array.from(document.querySelectorAll('.tab'));
+      const panels = {
+        'tab-python': document.getElementById('panel-python'),
+        'tab-web': document.getElementById('panel-web'),
+        'tab-ds': document.getElementById('panel-ds')
+      };
+
+      function setSelected(tabId){
+        tabs.forEach(t => t.setAttribute('aria-selected','false'));
+        const tab = document.getElementById(tabId) || document.querySelector(`#${CSS.escape(tabId)}`);
+        if(!tab) return;
+        tab.setAttribute('aria-selected','true');
+
+        // hide/show panels
+        Object.entries(panels).forEach(([id, el])=>{
+          el.hidden = id !== tabId;
+        });
+
+        // animate bars in the active panel
+        animateBars(panels[tabId]);
+        tab.focus();
+      }
+
+      function animateBars(panel){
+        // Reset fills first for smooth re-animation
+        document.querySelectorAll('.progress-fill').forEach(f => f.style.width = '0%');
+        const bars = panel.querySelectorAll('.progress');
+        bars.forEach(bar=>{
+          const level = Math.max(0, Math.min(100, parseInt(bar.dataset.level,10) || 0));
+          const fill = bar.querySelector('.progress-fill');
+          requestAnimationFrame(()=>{ // next frame -> animate
+            fill.style.width = level + '%';
+          });
+          // keep aria-valuenow in sync (a11y)
+          bar.setAttribute('aria-valuenow', String(level));
+        });
+      }
+
+      // init
+      tabs.forEach(tab=>{
+        tab.addEventListener('click', ()=> setSelected(tab.id));
+        tab.addEventListener('keydown', (e)=>{
+          const idx = tabs.indexOf(tab);
+          if(e.key === 'ArrowRight'){ e.preventDefault(); setSelected(tabs[(idx+1)%tabs.length].id); }
+          if(e.key === 'ArrowLeft'){ e.preventDefault(); setSelected(tabs[(idx-1+tabs.length)%tabs.length].id); }
+          if(e.key === 'Home'){ e.preventDefault(); setSelected(tabs[0].id); }
+          if(e.key === 'End'){ e.preventDefault(); setSelected(tabs[tabs.length-1].id); }
+        });
+      });
+
+      // Animate bars for the default visible panel
+      animateBars(document.getElementById('panel-python'));
+    })();
+
+    // Basic client-side validation feedback (kept minimal)
+    (function(){
+      const form = document.querySelector('form[aria-label="Contact form"]');
+      if(!form) return;
+      form.addEventListener('submit', function(e){
+        const fields = ['name','email','message'];
+        let invalid = [];
+        fields.forEach(id=>{
+          const el = document.getElementById(id);
+          if(!el || !el.checkValidity() || !el.value.trim()){
+            invalid.push(id);
+            if(el) el.style.borderColor = '#b94b4b';
+          } else {
+            el.style.borderColor = 'var(--border)';
+          }
+        });
+        if(invalid.length){
+          e.preventDefault();
+          const first = document.getElementById(invalid[0]);
+          if(first) first.focus();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
