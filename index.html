@@ -3,230 +3,486 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ali Amr | Portfolio</title>
+  <title>Ali Amr | Data Scientist</title>
   <link rel="icon" href="logo.png" type="image/png">
-  <meta name="description" content="My Portfolio" />
+  <meta name="description" content="Ali Amr - Data Scientist specializing in web scraping, data analysis, and machine learning" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root{
-      --orange:#ff7700;
-      --offwhite:#f8f9fa;
-      --blue:#007bff;
-      --dark-bg:#0f1115;
-      --dark-card:#151922;
-      --dark-elev:#1b2130;
-      --muted:#b5bdc9;
-      --border:#263044;
-      --radius:14px;
-      --shadow:0 10px 24px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.35);
-      --focus:0 0 0 3px rgba(0,123,255,.35);
-      --maxw:1100px;
+    :root {
+      --orange: #EF7722;
+      --light-orange: #FAA533;
+      --offwhite: #EBEBEB;
+      --blue: #0BA6DF;
+      --dark-bg: #0f1115;
+      --dark-card: #151922;
+      --dark-elev: #1b2130;
+      --muted: #b5bdc9;
+      --border: #263044;
+      --radius: 14px;
+      --shadow: 0 10px 24px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.35);
+      --focus: 0 0 0 3px rgba(11, 166, 223, 0.35);
+      --maxw: 1300px;
     }
 
     /* Base */
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--dark-bg);color:var(--offwhite);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.55}
-    img{max-width:100%;display:block}
-    a{color:var(--blue);text-decoration:none}
-    a:focus,button:focus,input:focus,textarea:focus{outline:none;box-shadow:var(--focus);border-radius:10px}
-    h1,h2{margin:0 0 .5rem}
-    h2{font-size:1.9rem;text-align:center}
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-    section{padding:64px 0}
-    .muted{color:var(--muted)}
-
-    /* Header (kept bright) */
-    header.hero{
-      background:var(--orange);
-      color:var(--offwhite);
-      position:relative;
-      overflow:hidden;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--dark-bg);
+      color: var(--offwhite);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    .hero .container{padding:36px 20px 72px}
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      align-items:center;
-      gap:28px;
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
     }
-    .hero-name{
-      font-size:3rem;
-      font-weight:800;
-      letter-spacing:.3px;
-      color:var(--offwhite);
-      margin-bottom:14px;
-      line-height:1.15;
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    .hero-summary{
-      color:var(--offwhite);
-      font-size:1.05rem;
-      max-width:52ch;
-    }
-    .profile-wrap{justify-self:end;display:flex;align-items:center;justify-content:center}
-    .profile{
-      width:300px; height:300px; border-radius:50%;
-      object-fit:cover; border:4px solid #ffffff;
-      box-shadow:0 8px 24px rgba(0,0,0,.18);
-      background:#fff;
+    section {
+      padding: 60px 0;
     }
 
-    /* Section headings */
-    .section-title{margin-bottom:28px}
-
-    /* Tabs (Skills) — dark themed with progress bars (no visible % text) */
-    .tabs{
-      max-width:900px; margin:0 auto;
-      background:var(--dark-card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    .tablist{
-      display:flex; flex-wrap:wrap;
-      background:var(--dark-elev);
-      border-bottom:1px solid var(--border);
-    }
-    .tab{
-      appearance:none; border:0; background:transparent; cursor:pointer;
-      padding:14px 18px; font-weight:700; color:var(--offwhite); flex:1 1 0;
-      letter-spacing:.2px;
-      transition:background .2s ease, color .2s ease, transform .05s ease-in;
-    }
-    .tab[aria-selected="true"]{background:var(--blue);color:#fff}
-    .tab:hover{background:#1f2840}
-    .tabpanel{padding:22px 22px 26px}
-    .skill{margin-bottom:18px}
-    .skill-title{font-weight:700;margin-bottom:8px}
-    .progress{
-      background:#0b0f18;
-      border:1px solid var(--border);
-      border-radius:999px;
-      overflow:hidden;
-      height:14px;
-      position:relative;
-    }
-    .progress-fill{
-      position:absolute; left:0; top:0; bottom:0;
-      width:0%;
-      background:linear-gradient(90deg,var(--blue),#3aa0ff);
-      transition:width 900ms ease;
-    }
-    /* subtle stripes */
-    .progress-fill::after{
-      content:"";
-      position:absolute; inset:0;
-      background-image:linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.18) 50%, rgba(255,255,255,.18) 75%, transparent 75%, transparent);
-      background-size:24px 24px;
-      mix-blend-mode:overlay;
-      opacity:.25;
-      animation:move 2s linear infinite;
-      pointer-events:none;
-    }
-    @keyframes move{to{background-position:24px 0}}
-
-    /* Visually hidden (for a11y, to expose % to screen readers only) */
-    .sr-only{
-      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    /* Particle Background */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.5;
     }
 
-    /* Projects */
-    .projects-grid{
-      display:grid; gap:18px;
-      grid-template-columns: repeat(3, 1fr);
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 20px;
     }
-    .card{
-      background:var(--dark-card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      display:flex; flex-direction:column; overflow:hidden;
-      transition: transform .15s ease;
+    .hero-content {
+      max-width: 900px;
+      z-index: 2;
     }
-    .card:hover{transform: translateY(-2px)}
-    .card img{
-      width:100%; height:160px; object-fit:cover; background:#222;
+    .hero-name {
+      font-size: 5.5rem;
+      font-weight: 900;
+      color: var(--offwhite);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
-    .card-body{padding:16px 16px 18px; display:flex; flex-direction:column; gap:8px}
-    .card-title{font-weight:800; font-size:1.1rem}
-    .card-desc{color:var(--muted); font-size:.98rem}
-    .btn{
-      align-self:flex-start;
-      display:inline-block;
-      background:var(--blue);
-      color:#fff; font-weight:800;
-      padding:10px 14px; border-radius:10px; border:0;
-      text-decoration:none; transition:filter .15s ease, transform .05s ease-in;
+    .hero-title {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      font-weight: 500;
     }
-    .btn:hover{filter:brightness(.95)}
-    .btn:active{transform:translateY(1px)}
+    .data-scientist {
+      background: linear-gradient(90deg, var(--orange), var(--light-orange), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      animation: gradient-shift 8s ease infinite;
+      background-size: 300% 100%;
+    }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hero-summary {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: var(--offwhite);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    
+    /* Profile Photo */
+    .profile-container {
+      margin: 30px auto;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      padding: 8px;
+      background: linear-gradient(135deg, var(--orange), var(--blue), var(--light-orange));
+      background-size: 300% 300%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: profile-pulse 8s ease infinite;
+      box-shadow: 0 0 25px rgba(239, 119, 34, 0.4);
+    }
+    @keyframes profile-pulse {
+      0% { 
+        background-position: 0% 50%;
+        box-shadow: 0 0 25px rgba(239, 119, 34, 0.4);
+      }
+      50% { 
+        background-position: 100% 50%;
+        box-shadow: 0 0 35px rgba(11, 166, 223, 0.6);
+      }
+      100% { 
+        background-position: 0% 50%;
+        box-shadow: 0 0 25px rgba(239, 119, 34, 0.4);
+      }
+    }
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--dark-bg);
+    }
 
-    /* Contact */
-    .contact-wrap{
-      max-width:800px; margin:0 auto;
-      background:var(--dark-card); border:1px solid var(--border); border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:22px;
+    /* Skills Section */
+    .skills-section {
+      background: rgba(15, 17, 21, 0.7);
+      backdrop-filter: blur(10px);
     }
-    .email-line{font-weight:700; margin-bottom:12px; word-break:break-all}
-    form{display:grid; gap:14px}
-    label{font-weight:700}
-    input[type="text"], input[type="email"], textarea{
-      width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-size:1rem;
-      background:var(--dark-elev); color:var(--offwhite);
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+      color: var(--offwhite);
+      position: relative;
     }
-    textarea{min-height:140px; resize:vertical}
-    input[type="submit"]{
-      background:var(--blue); color:#fff; font-weight:900; border:0;
-      padding:12px 18px; border-radius:12px; cursor:pointer;
-      transition:filter .15s ease, transform .05s ease-in;
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 5px;
+      background: var(--orange);
+      border-radius: 3px;
     }
-    input[type="submit"]:hover{filter:brightness(.95)}
-    input[type="submit"]:active{transform:translateY(1px)}
 
-    /* Footer */
-    footer{
-      padding:28px 0 48px; text-align:center; color:var(--muted); font-size:.95rem;
-      border-top:1px solid var(--border);
+    /* Tabs */
+    .tabs {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .tablist {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--dark-elev);
+      border-bottom: 1px solid var(--border);
+    }
+    .tab {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      padding: 16px 20px;
+      font-weight: 600;
+      color: var(--offwhite);
+      flex: 1 1 0;
+      letter-spacing: 0.2px;
+      transition: background 0.2s ease, color 0.2s ease;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+    }
+    .tab[aria-selected="true"] {
+      background: var(--blue);
+      color: #fff;
+    }
+    .tab:hover {
+      background: #1f2840;
+    }
+    .tabpanel {
+      padding: 20px;
+    }
+    .skill {
+      margin-bottom: 15px;
+    }
+    .skill-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+    .skill-title::before {
+      content: "•";
+      color: var(--blue);
+      font-size: 1.8rem;
+      margin-right: 10px;
+    }
+    .progress {
+      background: #0b0f18;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      height: 14px;
+      position: relative;
+    }
+    .progress-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), #3aa0ff);
+      transition: width 900ms ease;
+    }
+    .progress-fill::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.18) 50%, rgba(255,255,255,.18) 75%, transparent 75%, transparent);
+      background-size: 24px 24px;
+      mix-blend-mode: overlay;
+      opacity: .25;
+      animation: move 2s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes move {
+      to { background-position: 24px 0; }
+    }
+
+    /* Projects Section */
+    .projects-section {
+      background: rgba(15, 17, 21, 0.8);
+      backdrop-filter: blur(10px);
+    }
+    .projects-grid {
+      display: grid;
+      gap: 25px;
+    }
+    .project-card {
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    }
+    .project-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .project-card:hover .project-image {
+      transform: scale(1.03);
+    }
+    .project-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .project-title {
+      font-size: 1.4rem;
+      color: var(--offwhite);
+      margin-bottom: 5px;
+    }
+    .project-description {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .project-link {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: filter 0.15s ease, transform 0.05s ease-in;
+      margin-top: 10px;
+    }
+    .project-link:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    /* Connect Section */
+    .connect-section {
+      text-align: center;
+      padding: 80px 0;
+      background: rgba(15, 17, 21, 0.9);
+      backdrop-filter: blur(10px);
+    }
+    .connect-title {
+      font-size: 3.2rem;
+      margin-bottom: 15px;
+      line-height: 1.2;
+      white-space: pre-line;
+    }
+    .connect-subtitle {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .connect-icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 30px;
+    }
+    .icon-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--dark-card);
+      color: var(--offwhite);
+      font-size: 2rem;
+      transition: all 0.3s ease;
+      border: 2px solid var(--border);
+    }
+    .icon-link:hover {
+      background: var(--blue);
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(11, 166, 223, 0.3);
+    }
+    .icon-link:nth-child(2):hover {
+      background: var(--orange);
+      box-shadow: 0 10px 20px rgba(239, 119, 34, 0.3);
+    }
+    .icon-link:nth-child(3):hover {
+      background: var(--light-orange);
+      box-shadow: 0 10px 20px rgba(250, 165, 51, 0.3);
     }
 
     /* Responsive */
-    @media (max-width: 992px){
-      .hero-grid{grid-template-columns:1fr; text-align:left}
-      .profile-wrap{justify-self:start}
-      .projects-grid{grid-template-columns: repeat(2,1fr)}
+    @media (max-width: 992px) {
+      .hero-name {
+        font-size: 4rem;
+      }
+      .hero-title {
+        font-size: 1.8rem;
+      }
+      .connect-title {
+        font-size: 2.8rem;
+      }
+      .profile-container {
+        width: 300px;
+        height: 300px;
+      }
     }
-    @media (max-width: 640px){
-      .hero-name{font-size:2.25rem}
-      .hero-summary{font-size:1rem}
-      .projects-grid{grid-template-columns:1fr}
-      .card img{height:150px}
-      .tab{flex: 1 0 50%}
+    @media (max-width: 768px) {
+      .hero-name {
+        font-size: 3.2rem;
+      }
+      .hero-title {
+        font-size: 1.6rem;
+      }
+      .hero-summary {
+        font-size: 1.1rem;
+      }
+      .section-title {
+        font-size: 2.2rem;
+      }
+      .connect-title {
+        font-size: 2.2rem;
+      }
+      .connect-icons {
+        gap: 20px;
+      }
+      .icon-link {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+      }
+      .tab {
+        flex: 1 0 50%;
+      }
+      .profile-container {
+        width: 280px;
+        height: 280px;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-name {
+        font-size: 2.5rem;
+      }
+      .hero-title {
+        font-size: 1.3rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .connect-title {
+        font-size: 1.8rem;
+      }
+      .connect-icons {
+        gap: 15px;
+      }
+      .icon-link {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+      }
+      .profile-container {
+        width: 250px;
+        height: 250px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header (orange) -->
+  <!-- Particle Background Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Hero Section -->
   <header class="hero" role="banner">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-left">
-          <h1 class="hero-name">Ali Amr</h1>
-          <p class="hero-summary">
-            I'm a Data Scientist specialized in collecting data from websites, cleaning and optimizing data to extract important features and visualize it for better reading and storytelling. I build machine learning models to make predictions. I adapt to new updates as they happen and apply new methods to ensure flexibility and stability. I also like to hear feedback to improve and deliver better results.
-          </p>
-        </div>
-        <div class="profile-wrap">
-          <img class="profile" src="assets/images/my_pfp.jpg" alt="Your Profile Picture" />
-        </div>
+    <div class="hero-content">
+      <h1 class="hero-name">ALI AMR</h1>
+      <div class="hero-title">
+        I'm a <span class="data-scientist">Data Scientist</span>
+      </div>
+      <p class="hero-summary">
+        I extract data from websites using automated-scripts. Clean, scale and obtain valuable information from it to make insightful charts that help your business grow in your own way. Train and tune ML models to handle assigned tasks precisely and efficiently. I value feedback to improve and deliver the best possible outcomes.
+      </p>
+      
+      <!-- Profile Photo -->
+      <div class="profile-container">
+        <img src="assets/images/my_pfp.jpg" alt="Ali Amr - Data Scientist" class="profile-photo" />
       </div>
     </div>
   </header>
 
   <main>
 
-    <!-- Skills -->
-    <section id="skills" aria-labelledby="skills-title">
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section" aria-labelledby="skills-title">
       <div class="container">
         <h2 class="section-title" id="skills-title">Skills</h2>
         <div class="tabs" data-component="tabs">
@@ -241,42 +497,48 @@
             <div class="skill" role="group" aria-labelledby="skill-pandas">
               <div class="skill-title" id="skill-pandas">Pandas</div>
               <div class="progress" role="progressbar" aria-label="Pandas proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" data-level="90">
-                <span class="progress-fill"></span><span class="sr-only">90%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">90%</span>
               </div>
             </div>
 
             <div class="skill" role="group" aria-labelledby="skill-numpy">
               <div class="skill-title" id="skill-numpy">NumPy</div>
               <div class="progress" role="progressbar" aria-label="NumPy proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" data-level="80">
-                <span class="progress-fill"></span><span class="sr-only">80%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">80%</span>
               </div>
             </div>
 
             <div class="skill" role="group" aria-labelledby="skill-matplotlib">
               <div class="skill-title" id="skill-matplotlib">Matplotlib</div>
               <div class="progress" role="progressbar" aria-label="Matplotlib proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" data-level="80">
-                <span class="progress-fill"></span><span class="sr-only">80%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">80%</span>
               </div>
             </div>
 
             <div class="skill" role="group" aria-labelledby="skill-seaborn">
               <div class="skill-title" id="skill-seaborn">Seaborn</div>
               <div class="progress" role="progressbar" aria-label="Seaborn proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" data-level="70">
-                <span class="progress-fill"></span><span class="sr-only">70%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">70%</span>
               </div>
             </div>
 
             <div class="skill" role="group" aria-labelledby="skill-plotly">
               <div class="skill-title" id="skill-plotly">Plotly</div>
               <div class="progress" role="progressbar" aria-label="Plotly proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" data-level="90">
-                <span class="progress-fill"></span><span class="sr-only">90%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">90%</span>
               </div>
             </div>
 
             <div class="skill" role="group" aria-labelledby="skill-dash">
               <div class="skill-title" id="skill-dash">Dash</div>
               <div class="progress" role="progressbar" aria-label="Dash proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" data-level="80">
-                <span class="progress-fill"></span><span class="sr-only">80%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">80%</span>
               </div>
             </div>
           </div>
@@ -286,21 +548,24 @@
             <div class="skill" role="group" aria-labelledby="skill-selenium">
               <div class="skill-title" id="skill-selenium">Selenium</div>
               <div class="progress" role="progressbar" aria-label="Selenium proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" data-level="90">
-                <span class="progress-fill"></span><span class="sr-only">90%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">90%</span>
               </div>
             </div>
 
             <div class="skill" role="group" aria-labelledby="skill-request">
               <div class="skill-title" id="skill-request">Request</div>
               <div class="progress" role="progressbar" aria-label="Request proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" data-level="50">
-                <span class="progress-fill"></span><span class="sr-only">50%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">50%</span>
               </div>
             </div>
 
             <div class="skill" role="group" aria-labelledby="skill-bs4">
               <div class="skill-title" id="skill-bs4">Beautiful Soup</div>
               <div class="progress" role="progressbar" aria-label="Beautiful Soup proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" data-level="70">
-                <span class="progress-fill"></span><span class="sr-only">70%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">70%</span>
               </div>
             </div>
           </div>
@@ -310,21 +575,24 @@
             <div class="skill" role="group" aria-labelledby="skill-prep">
               <div class="skill-title" id="skill-prep">Preprocessing</div>
               <div class="progress" role="progressbar" aria-label="Preprocessing proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" data-level="90">
-                <span class="progress-fill"></span><span class="sr-only">90%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">90%</span>
               </div>
             </div>
 
             <div class="skill" role="group" aria-labelledby="skill-viz">
               <div class="skill-title" id="skill-viz">Visualization</div>
               <div class="progress" role="progressbar" aria-label="Visualization proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90" data-level="90">
-                <span class="progress-fill"></span><span class="sr-only">90%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">90%</span>
               </div>
             </div>
 
             <div class="skill" role="group" aria-labelledby="skill-ml">
               <div class="skill-title" id="skill-ml">Machine Learning</div>
               <div class="progress" role="progressbar" aria-label="Machine Learning proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" data-level="50">
-                <span class="progress-fill"></span><span class="sr-only">50%</span>
+                <span class="progress-fill"></span>
+                <span class="sr-only">50%</span>
               </div>
             </div>
           </div>
@@ -332,90 +600,148 @@
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" aria-labelledby="projects-title">
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section" aria-labelledby="projects-title">
       <div class="container">
         <h2 class="section-title" id="projects-title">Projects</h2>
         <div class="projects-grid">
           <!-- Project 1 -->
-          <article class="card">
-            <img src="assets/gifs/fpl.gif" alt="Project Image placeholder for Fantasy Premier League Predictor" />
-            <div class="card-body">
-              <div class="card-title">Fantasy Premier League Predictor</div>
-              <p class="card-desc">
+          <article class="project-card">
+            <img src="assets/gifs/fpl.gif" alt="Fantasy Premier League Predictor dashboard showing player statistics" class="project-image" />
+            <div class="project-content">
+              <h3 class="project-title">Fantasy Premier League Predictor</h3>
+              <p class="project-description">
                 An interactive app to quickly find top performing players based on stats of past seasons. It's built on a simple layout for easier navigation and finding different stats is as easy as clicking buttons!
               </p>
-              <a class="btn" href="https://github.com/AliNowia/Fpl-performance-predictor" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+              <a class="project-link" href="https://github.com/AliNowia/Fpl-performance-predictor" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
             </div>
           </article>
 
           <!-- Project 2 -->
-          <article class="card">
-            <img src="assets/gifs/usaccidents.gif" alt="Project Image placeholder for United States Accidents Dashboard" />
-            <div class="card-body">
-              <div class="card-title">United States Accidents Dashboard</div>
-              <p class="card-desc">
+          <article class="project-card">
+            <img src="assets/gifs/usaccidents.gif" alt="United States Accidents Dashboard showing various data visualizations" class="project-image" />
+            <div class="project-content">
+              <h3 class="project-title">United States Accidents Dashboard</h3>
+              <p class="project-description">
                 A dashboard for practicing preprocessing and visualization, showing multiple graphs for many aspects of the accidents, including where they occurred, when and on what conditions.
               </p>
-              <a class="btn" href="https://github.com/AliNowia/US-Accidents-Dashboard" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+              <a class="project-link" href="https://github.com/AliNowia/US-Accidents-Dashboard" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
             </div>
           </article>
 
           <!-- Project 3 -->
-          <article class="card">
-            <img src="assets/images/audible.png" alt="Project Image placeholder for Audible, An audio book website" />
-            <div class="card-body">
-              <div class="card-title">Scraping Audible, an Audio Book Website</div>
-              <p class="card-desc">
+          <article class="project-card">
+            <img src="assets/images/audible.png" alt="Audible website interface showing audiobook listings" class="project-image" />
+            <div class="project-content">
+              <h3 class="project-title">Scraping Audible, an Audio Book Website</h3>
+              <p class="project-description">
                 Web scraping project where I collected data about audio books and organized them in an easy-to-read excel file. It was a data entry practice.
               </p>
-              <a class="btn" href="https://github.com/AliNowia/Audible-search" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+              <a class="project-link" href="https://github.com/AliNowia/Audible-search" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" aria-labelledby="contact-title">
+    <!-- Connect Section -->
+    <section class="connect-section" aria-labelledby="connect-title">
       <div class="container">
-        <h2 class="section-title" id="contact-title">Contact</h2>
-        <div class="contact-wrap">
-          <div class="email-line">Email: <a href="mailto:aliamr182005@gmail.com">aliamr182005@gmail.com</a></div>
-          <form action="#" method="post" novalidate aria-label="Contact form">
-            <div>
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" required />
-            </div>
-            <div>
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" required />
-            </div>
-            <div>
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="How can I help?" required></textarea>
-            </div>
-            <div>
-              <input type="submit" value="Send Message" />
-            </div>
-          </form>
+        <h2 class="connect-title" id="connect-title">DONE READING ?<br>LET'S CONNECT !</h2>
+        <p class="connect-subtitle">Feel free to reach out !</p>
+        
+        <div class="connect-icons">
+          <a href="https://www.linkedin.com/in/aliamr182005/" class="icon-link" target="_blank" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="mailto:aliamr182005@gmail.com" class="icon-link" aria-label="Email">
+            <i class="far fa-envelope"></i>
+          </a>
+          <a href="https://github.com/AliNowia" class="icon-link" target="_blank" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer>
-    <div class="container">
-      © <span id="year"></span> Ali Amr Portfolio
-    </div>
-  </footer>
-
   <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Particle Background Implementation
+    (function() {
+      var canvas = document.getElementById('particle-canvas');
+      var ctx = canvas.getContext('2d');
+      var particles = [];
+      var particleCount = 200;
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      
+      // Set canvas size
+      canvas.width = w;
+      canvas.height = h;
+      
+      // Create particles
+      function createParticles() {
+        for(var i = 0; i < particleCount; i++) {
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            radius: Math.random() * 1.5 + 0.5,
+            color: 'rgba(255, 255, 255, ' + (Math.random() * 0.5 + 0.1) + ')',
+            speed: Math.random() * 0.5 + 0.1,
+            angle: Math.random() * Math.PI * 2,
+            move: function() {
+              this.x += Math.cos(this.angle) * this.speed;
+              this.y += Math.sin(this.angle) * this.speed;
+              
+              // Wrap around edges
+              if(this.x < 0) this.x = w;
+              if(this.x > w) this.x = 0;
+              if(this.y < 0) this.y = h;
+              if(this.y > h) this.y = 0;
+            }
+          });
+        }
+      }
+      
+      // Draw particles
+      function drawParticles() {
+        ctx.clearRect(0, 0, w, h);
+        
+        for(var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+          
+          p.move();
+        }
+        
+        requestAnimationFrame(drawParticles);
+      }
+      
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
+      });
+      
+      // Initialize
+      createParticles();
+      drawParticles();
+    })();
 
-    // Tabs with accessibility + progress re-animate
+    // Skills tabs functionality
     (function(){
       const tabs = Array.from(document.querySelectorAll('.tab'));
       const panels = {
@@ -471,29 +797,21 @@
       animateBars(document.getElementById('panel-python'));
     })();
 
-    // Basic client-side validation feedback (kept minimal)
-    (function(){
-      const form = document.querySelector('form[aria-label="Contact form"]');
-      if(!form) return;
-      form.addEventListener('submit', function(e){
-        const fields = ['name','email','message'];
-        let invalid = [];
-        fields.forEach(id=>{
-          const el = document.getElementById(id);
-          if(!el || !el.checkValidity() || !el.value.trim()){
-            invalid.push(id);
-            if(el) el.style.borderColor = '#b94b4b';
-          } else {
-            el.style.borderColor = 'var(--border)';
-          }
-        });
-        if(invalid.length){
-          e.preventDefault();
-          const first = document.getElementById(invalid[0]);
-          if(first) first.focus();
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
         }
       });
-    })();
+    });
   </script>
 </body>
 </html>
